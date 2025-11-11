@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Performance Tracker</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="welcome-container" id="welcome-container">
+      <div class="img-form-container">
+        <div class="img-container">
+          <img src="./assets/quiz.jpg" alt="Teacher tracking students" />
+        </div>
+        <div class="my-form-container">
+          <div class="first-part-cont">
+            <h2>Student Performance Tracker</h2>
+            <p>Teachers' Dashboard for tracking their students' performance.</p>
+          </div>
+          <form class="login-form" id="login-form">
+            <div class="teachers-pin-cont">
+              <label for="pin">Teacher's PIN:</label>
+              <input
+                type="text"
+                id="pin"
+                name="pin"
+                placeholder="Enter your PIN"
+              />
+              <div class="pin-err" id="pin-err"></div>
+            </div>
+            <div class="teachers-password-cont">
+              <label for="password">Password:</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+              />
+              <i class="fa-regular fa-eye" id="toggle-passwrd"></i>
+              <div class="password-err" id="password-err"></div>
+            </div>
+            <button type="submit">Login</button>
+            <div class="login-err" id="login-err"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard starts here >>>> -->
+    <div class="dashboard-container" id="dashboard-container">
+      <div class="main-container">
+        <div class="header-container">
+          <div class="left-side-container">
+            <h2>Dashboard</h2>
+          </div>
+          <div class="right-side-container">
+            <h2>Ms. Dorcas Abimbola</h2>
+            <div class="img-cont">
+              <img src="./assets/teacher.png" alt="Ms. Dorcas A." />
+            </div>
+            <button class="logout-btn" id="logout-btn">Logout</button>
+          </div>
+        </div>
+
+        <div class="search-input-add-btn-container">
+          <div class="search-container">
+            <input type="text" placeholder="Search by name" id="search-input" />
+            <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
+          </div>
+          <div class="add-btn-container">
+            <button id="add-btn">Add Student</button>
+          </div>
+        </div>
+
+        <div class="table-container-main" id="table-container-main">
+          <div class="static-data-container">
+            <div class="index-number">
+              <h3>S/N</h3>
+            </div>
+            <div class="profile-pics">
+              <h3>Profile Picture</h3>
+            </div>
+            <div class="students-names">
+              <h3>Student's Name</h3>
+            </div>
+            <div class="student-class">
+              <h3>Class</h3>
+            </div>
+            <div class="scores">
+              <h3>Average Scores</h3>
+            </div>
+            <div class="performance-cat">
+              <h3>Performance</h3>
+            </div>
+          </div>
+          <div class="dynamic-data-container" id="dynamic-data-container">
+            <div class="index-number-cont">
+              <!-- <h3 id="index-number-h3">1</h3> -->
+            </div>
+            <div class="profile-pics-cont">
+              <!-- <img
+                src="#"
+                alt="students profile pictures"
+                id="profile-pics-img"
+              /> -->
+            </div>
+            <div class="students-names-cont">
+              <!-- <h3 id="students-names-h3">Ore Favour</h3> -->
+            </div>
+            <div class="student-class-cont">
+              <!-- <h3 id="student-class-h3">SS3</h3> -->
+            </div>
+            <div class="scores-cont">
+              <!-- <h3 id="scores-h3">87</h3> -->
+            </div>
+            <div class="performance-cat-cont">
+              <!-- <h3 id="performance-cat-h3">Excellent</h3> -->
+            </div>
+            <div class="delete-cont">
+              <!-- <i class="fa-regular fa-trash-can" id="delete-student"></i> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Modal starts here >>>> -->
+
+    <div class="form-modal-container" id="form-modal-cont">
+      <div class="form-section">
+        <div class="upper-part-container">
+          <h2>Add Student</h2>
+          <i class="fa-regular fa-circle-xmark" id="close-modal"></i>
+        </div>
+
+        <form class="add-student-form" id="add-student-form">
+          <div class="student-name-input">
+            <label for="student-name">Student's Name</label>
+            <input
+              type="text"
+              id="student-name-input"
+              name="student-name"
+              placeholder="Enter student's name"
+            />
+            <div class="student-name-error" id="student-name-error"></div>
+          </div>
+          <div class="students-age-input">
+            <label for="students-age">Age</label>
+            <input
+              type="text"
+              id="students-age-input"
+              name="students-age"
+              placeholder="Age"
+            />
+            <div class="students-age-error" id="students-age-error"></div>
+          </div>
+
+          <div class="students-class-input">
+            <label for="students-class">Class</label>
+            <input
+              type="text"
+              id="students-class-input"
+              name="students-class"
+              placeholder="Class"
+            />
+            <div class="students-class-error" id="students-class-error"></div>
+          </div>
+
+          <div class="maths-subj-container">
+            <label for="maths">Mathematics</label>
+            <input
+              type="text"
+              id="maths"
+              name="subject"
+              placeholder="Mathematics score"
+            />
+            <div class="maths-error" id="maths-error"></div>
+          </div>
+
+          <div class="english-subj-container">
+            <label for="english">English</label>
+            <input
+              type="text"
+              id="english"
+              name="subject"
+              placeholder="English score"
+            />
+            <div class="english-error" id="english-error"></div>
+          </div>
+
+          <div class="science-subj-container">
+            <label for="science">General Science</label>
+            <input
+              type="text"
+              id="science"
+              name="subject"
+              placeholder="Science score"
+            />
+            <div class="science-error" id="science-error"></div>
+          </div>
+
+          <div class="image-url-cont">
+            <label for="image-url">Student`s Picture</label>
+            <input
+              type="text"
+              id="image-url"
+              name="image-url"
+              placeholder="Image URL"
+            />
+            <div class="image-url-error" id="image-url-error"></div>
+          </div>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

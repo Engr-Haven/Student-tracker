@@ -1,0 +1,665 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: -0.031rem;
+}
+
+.welcome-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(0, 0%, 96%);
+}
+
+.img-form-container {
+  width: 60%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0;
+  background-color: hsl(0, 5%, 92%);
+  border: 1px solid hsla(253, 85%, 82%, 0.676);
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.img-container {
+  width: 100%;
+  height: 100%;
+  background-color: hsl(244, 65%, 52%);
+  border-radius: 1rem 0 0 1rem;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  border-radius: 1rem 0 0 1rem;
+}
+
+.my-form-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1.5rem;
+  padding: 6rem 3rem;
+}
+
+.first-part-cont {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  row-gap: 0.5rem;
+}
+
+.first-part-cont h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: hsl(255, 16%, 41%);
+  line-height: 1.5rem;
+}
+
+.first-part-cont p {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: hsl(0, 0%, 42%);
+  line-height: 1.2rem;
+}
+
+.login-form {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  row-gap: 0.5rem;
+}
+
+.teachers-pin-cont,
+.teachers-password-cont {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  row-gap: 0.2rem;
+}
+
+.teachers-pin-cont label,
+.teachers-password-cont label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: hsl(0, 0%, 28%);
+}
+
+.teachers-pin-cont input,
+.teachers-password-cont input {
+  width: 100%;
+  height: auto;
+  border: 1px solid hsla(253, 85%, 82%, 0.676);
+  border-radius: 0.4rem;
+  outline: none;
+  padding: 0.7rem 0.6rem;
+  background-color: hsl(0, 0%, 100%);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: hsl(0, 0%, 42%);
+}
+
+.teachers-pin-cont input:focus,
+.teachers-password-cont input:focus {
+  border: 1px solid hsl(244, 65%, 52%);
+}
+
+.teachers-pin-cont input::placeholder,
+.teachers-password-cont input::placeholder {
+  font-size: 0.8rem;
+  color: hsla(0, 0%, 42%, 0.384);
+}
+
+.pin-err,
+.password-err,
+.login-err {
+  font-size: 0.8rem;
+  color: hsl(18, 84%, 54%);
+  font-weight: 500;
+  line-height: 1.2rem;
+}
+
+.fa-eye {
+  font-size: 0.7rem;
+  color: hsla(0, 0%, 42%, 0.779);
+  position: absolute;
+  top: 21rem;
+  right: 4rem;
+  cursor: pointer;
+}
+
+.login-form button {
+  width: 100%;
+  height: auto;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background-color: hsl(244, 65%, 52%);
+  color: hsl(0, 0%, 96%);
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 0.4rem 0;
+  margin: 1rem 0 0 0;
+}
+
+.login-form button:hover {
+  background-color: hsl(244, 61%, 48%);
+  color: hsl(0, 0%, 100%);
+}
+
+/* Dashboard styling starts here >>> */
+
+.dashboard-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  padding: 2rem 6rem;
+  background-color: hsla(0, 0%, 96%, 0.541);
+  display: none;
+}
+
+.main-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  row-gap: 2rem;
+}
+
+.header-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid hsl(244, 61%, 48%);
+  padding: 2rem 0;
+}
+
+.left-side-container {
+  width: fit-content;
+  height: auto;
+}
+
+.left-side-container h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: hsl(255, 16%, 41%);
+}
+
+.right-side-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  column-gap: 1.2rem;
+}
+
+.right-side-container h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: hsl(255, 16%, 41%);
+}
+
+.img-cont {
+  width: 40px;
+  height: 40px;
+  background-color: hsl(102, 100%, 75%);
+  border-radius: 10000000000000000rem;
+}
+
+.img-cont img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10000000000000000rem;
+}
+
+.logout-btn {
+  background-color: hsl(244, 65%, 52%);
+  color: hsl(0, 0%, 96%);
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.logout-btn:hover,
+.add-btn-container button:hover {
+  background-color: hsl(244, 61%, 48%);
+  color: hsl(0, 0%, 100%);
+}
+
+.search-input-add-btn-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 3rem;
+}
+
+.search-container {
+  width: 30%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  column-gap: 0.5rem;
+  background-color: hsl(0, 0%, 96%);
+  border: 1px solid hsla(253, 85%, 82%, 0.676);
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.8rem;
+}
+
+.search-container input {
+  width: 100%;
+  height: auto;
+  background-color: hsl(0, 0%, 96%);
+  border: none;
+  outline: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  color: hsl(255, 16%, 41%);
+}
+
+.fa-magnifying-glass {
+  color: hsl(244, 61%, 48%);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.add-btn-container {
+  width: fit-content;
+  height: auto;
+}
+
+.add-btn-container button {
+  background-color: hsl(244, 65%, 52%);
+  color: hsl(0, 0%, 96%);
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.table-container-main {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  row-gap: 0.3rem;
+  margin-top: 3rem;
+}
+
+.static-data-container,
+.dynamic-data-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* column-gap: 4rem; */
+}
+
+.index-number {
+  width: fit-content;
+  height: auto;
+  padding: 0.8rem 1rem;
+  background-color: hsla(0, 0%, 65%, 0.29);
+  border-right: 2px solid hsl(0, 1%, 22%);
+  flex: 1;
+}
+
+.index-number h3 {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: hsl(0, 0%, 28%);
+}
+
+.profile-pics,
+.students-names,
+.student-class,
+.scores {
+  width: fit-content;
+  height: auto;
+  padding: 0.8rem 3rem;
+  border-right: 2px solid hsl(0, 1%, 22%);
+  flex: 1;
+  /* border-bottom: 2px solid hsl(0, 1%, 22%); */
+}
+
+.profile-pics {
+  background-color: hsla(263, 100%, 83%, 0.288);
+}
+
+.students-names {
+  background-color: hsla(18, 88%, 81%, 0.251);
+}
+
+.student-class {
+  background-color: hsla(190, 100%, 86%, 0.292);
+}
+
+.scores {
+  background-color: hsla(0, 5%, 78%, 0.26);
+}
+
+.performance-cat {
+  width: fit-content;
+  height: auto;
+  padding: 0.8rem 3rem;
+  background-color: hsla(245, 95%, 84%, 0.224);
+  flex: 1;
+}
+
+.profile-pics h3,
+.students-names h3,
+.student-class h3,
+.scores h3,
+.performance-cat h3 {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: hsl(0, 0%, 28%);
+}
+
+.index-number-cont {
+  width: fit-content;
+  height: auto;
+  background-color: hsl(0, 0%, 100%);
+  padding: 0.8rem 1rem;
+  border-right: 1px solid hsl(0, 1%, 22%);
+  flex: 1;
+}
+
+.index-number-cont h3,
+.students-names-cont h3,
+.student-class-cont h3,
+.scores-cont h3 {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: hsl(0, 1%, 22%);
+}
+
+.profile-pics-cont {
+  width: 30px;
+  height: 30px;
+  background-color: hsl(115, 97%, 72%);
+  border-radius: 1000000000rem;
+  margin: 0.8rem 3rem;
+  /* flex: 1; */
+}
+
+.profile-pics-cont img {
+  width: 100%;
+  height: 100%;
+  border-radius: 1000000000rem;
+}
+
+.students-names-cont {
+  width: fit-content;
+  height: auto;
+  background-color: hsl(0, 0%, 100%);
+  padding: 0.8rem 3rem;
+  border-right: 1px solid hsl(0, 1%, 22%);
+  border-left: 1px solid hsl(0, 1%, 22%);
+  flex: 1;
+}
+
+.student-class-cont,
+.scores-cont,
+.performance-cat-cont {
+  width: fit-content;
+  height: auto;
+  background-color: hsl(0, 0%, 100%);
+  padding: 0.8rem 3rem;
+  border-right: 1px solid hsl(0, 1%, 22%);
+  flex: 1;
+}
+
+.performance-cat-cont h3 {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: hsl(157, 79%, 34%);
+}
+
+.delete-cont {
+  width: fit-content;
+  height: auto;
+  background-color: hsl(0, 0%, 100%);
+  padding: 0.8rem 0.3rem;
+}
+
+.delete-cont i {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: hsl(0, 70%, 64%);
+  cursor: pointer;
+}
+
+/* Form Modal styling starts here >>>> */
+
+.form-modal-container {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  visibility: hidden;
+}
+
+.form-modal-container-visible {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  visibility: visible;
+}
+
+.form-section {
+  width: 35%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  row-gap: 1rem;
+  background-color: hsl(0, 5%, 92%);
+  padding: 0.7rem 2.5rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid hsl(244, 65%, 52%);
+}
+
+.upper-part-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.upper-part-container h2 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: hsl(0, 1%, 22%);
+}
+
+.upper-part-container i {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: hsl(0, 70%, 64%);
+  cursor: pointer;
+}
+
+.upper-part-container i:hover {
+  color: hsl(18, 71%, 50%);
+}
+
+.add-student-form {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  row-gap: 0.5rem;
+}
+
+.student-name-input,
+.students-age-input,
+.students-class-input,
+.image-url-cont,
+.maths-subj-container,
+.english-subj-container,
+.science-subj-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  row-gap: 0.2rem;
+}
+
+.student-name-input label,
+.students-age-input label,
+.students-class-input label,
+.image-url-cont label,
+.maths-subj-container label,
+.english-subj-container label,
+.science-subj-container label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: hsl(0, 1%, 22%);
+}
+
+.student-name-input input,
+.students-age-input input,
+.students-class-input input,
+.image-url-cont input,
+.maths-subj-container input,
+.english-subj-container input,
+.science-subj-container input {
+  width: 100%;
+  height: auto;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid hsla(253, 100%, 72%, 0.735);
+  outline: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: hsl(0, 1%, 22%);
+}
+
+.student-name-input input:focus,
+.students-age-input input:focus,
+.students-class-input input:focus,
+.image-url-cont input:focus,
+.maths-subj-container input:focus,
+.english-subj-container input:focus,
+.science-subj-container input:focus {
+  border: 1px solid hsl(244, 61%, 48%);
+}
+
+.student-name-input input::placeholder,
+.students-age-input input::placeholder,
+.students-class-input input::placeholder,
+.image-url-cont input::placeholder,
+.maths-subj-container input::placeholder,
+.english-subj-container input::placeholder,
+.science-subj-container input::placeholder {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: hsla(0, 1%, 22%, 0.381);
+}
+
+.student-name-error,
+.students-age-error,
+.students-class-error,
+.image-url-error,
+.maths-error,
+.english-error,
+.science-error {
+  font-size: 0.7rem;
+  color: hsl(18, 84%, 54%);
+  font-weight: 500;
+}
+
+.add-student-form button {
+  width: 100%;
+  height: auto;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background-color: hsl(244, 65%, 52%);
+  color: hsl(0, 0%, 96%);
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 0.4rem 0;
+}
+
+.add-student-form button:hover {
+  background-color: hsl(244, 61%, 48%);
+  color: hsl(0, 0%, 100%);
+}
