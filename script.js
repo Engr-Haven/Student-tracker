@@ -33,6 +33,9 @@ let sciERR = document.querySelector(`#science-error`);
 // The TABLE >>>
 let tableDiv = document.querySelector(`#dynamic-data-container`);
 let mainTableDiv = document.querySelector(`#table-container-main`);
+// The Search Bar >>>
+let searchBar = document.querySelector(`#search-input`);
+let searchIcon = document.querySelector(`#search-icon`);
 
 // AUTH here >>>>
 
@@ -202,6 +205,8 @@ studentADDForm.addEventListener(`submit`, (e) => {
   studentsDATA.push(stdDATA_OBJ);
   localStorage.setItem(`StudentDatabase`, JSON.stringify(studentsDATA));
 
+  renderOUTPUT();
+
   studentADDForm.reset();
 
   console.log(studentsDATA);
@@ -288,57 +293,135 @@ function renderOUTPUT() {
     studentsDATA = JSON.parse(localStorage.getItem(`StudentDatabase`));
   }
 
-  tableDiv.innerHTML = ``;
+  mainTableDiv.innerHTML = ``;
 
   studentsDATA.forEach((std, index) => {
     let nameOfStd = std.stdName;
     let imgOfStd = std.stdImageURL;
     let classOfStd = std.stdClass;
     let aveScoresOfStd = std.stdAVESCORES;
-    let perfOfStd = std.stdPerfomance();
+    let perfOfStd = std.performanceStudent;
+
+    let rowDiv = document.createElement(`div`);
+    rowDiv.classList.add(`student-row`);
 
     let firstDiv = document.createElement(`div`);
     firstDiv.classList.add(`index-number-cont`);
-
-    firstDiv.innerHTML = `<p>${index + 1}</p>`;
-    tableDiv.appendChild(firstDiv);
+    firstDiv.innerHTML = `<h3>${index + 1}</h3>`;
 
     let secondDiv = document.createElement(`div`);
     secondDiv.classList.add(`profile-pics-cont`);
-    secondDiv.innerHTML = `<img src="${imgOfStd}" alt="student-image" />`;
-    tableDiv.appendChild(secondDiv);
+    secondDiv.innerHTML = `<img src="${imgOfStd}" alt="" />`;
 
     let thirdDiv = document.createElement(`div`);
     thirdDiv.classList.add(`students-names-cont`);
-    thirdDiv.innerHTML = `<p>${nameOfStd}</p>`;
-    tableDiv.appendChild(thirdDiv);
+    thirdDiv.innerHTML = `<h3>${nameOfStd}</h3>`;
 
     let fourthDiv = document.createElement(`div`);
     fourthDiv.classList.add(`student-class-cont`);
-    fourthDiv.innerHTML = `<p>${classOfStd}</p>`;
-    tableDiv.appendChild(fourthDiv);
+    fourthDiv.innerHTML = `<h3>${classOfStd}</h3>`;
 
     let fifthDiv = document.createElement(`div`);
     fifthDiv.classList.add(`scores-cont`);
-    fifthDiv.innerHTML = `<p>${aveScoresOfStd}</p>`;
-    tableDiv.appendChild(fifthDiv);
+    fifthDiv.innerHTML = `<h3>${aveScoresOfStd}</h3>`;
 
     let sixthDiv = document.createElement(`div`);
     sixthDiv.classList.add(`performance-cat-cont`);
-    sixthDiv.innerHTML = `<p>${perfOfStd}</p>`;
-    tableDiv.appendChild(sixthDiv);
+    sixthDiv.innerHTML = `<h3>${perfOfStd}</h3>`;
 
     let seventhDiv = document.createElement(`div`);
     seventhDiv.classList.add(`delete-cont`);
     seventhDiv.innerHTML = `<i class="fa-regular fa-trash-can" id="delete-student"></i>`;
-    seventhDiv.innerHTML.addEventListener(`click`, () => {
+    seventhDiv.addEventListener(`click`, () => {
       studentsDATA.splice(index, 1);
       localStorage.setItem(`StudentDatabase`, JSON.stringify(studentsDATA));
       renderOUTPUT();
     });
 
-    tableDiv.appendChild(seventhDiv);
-
-    mainTableDiv.appendChild(tableDiv);
+    rowDiv.append(
+      firstDiv,
+      secondDiv,
+      thirdDiv,
+      fourthDiv,
+      fifthDiv,
+      sixthDiv,
+      seventhDiv
+    );
+    mainTableDiv.append(rowDiv);
   });
 }
+
+// Call renderOUTPUT on page load to display any existing student data
+renderOUTPUT();
+
+// Code for Search Functionality and Re-rendering the Table >>>
+
+searchBar.addEventListener(`input`, () => {
+  let searchedResults = searchBar.value.trim().toLowerCase();
+
+  let filteredData = studentsDATA.filter((student) => {
+    return student.stdName.toLowerCase().includes(searchedResults);
+  });
+
+  mainTableDiv.innerHTML = ``;
+
+  filteredData.forEach((student, index) => {
+    let nameOfStd = student.stdName;
+    let imgOfStd = student.stdImageURL;
+    let classOfStd = student.stdClass;
+    let aveScoresOfStd = student.stdAVESCORES;
+    let perfOfStd = student.performanceStudent;
+
+    let rowDiv = document.createElement(`div`);
+    rowDiv.classList.add(`student-row`);
+
+    let firstDiv = document.createElement(`div`);
+    firstDiv.classList.add(`index-number-cont`);
+    firstDiv.innerHTML = `<h3>${index + 1}</h3>`;
+
+    let secondDiv = document.createElement(`div`);
+    secondDiv.classList.add(`profile-pics-cont`);
+    secondDiv.innerHTML = `<img src="${imgOfStd}" alt="" />`;
+
+    let thirdDiv = document.createElement(`div`);
+    thirdDiv.classList.add(`students-names-cont`);
+    thirdDiv.innerHTML = `<h3>${nameOfStd}</h3>`;
+
+    let fourthDiv = document.createElement(`div`);
+    fourthDiv.classList.add(`student-class-cont`);
+    fourthDiv.innerHTML = `<h3>${classOfStd}</h3>`;
+
+    let fifthDiv = document.createElement(`div`);
+    fifthDiv.classList.add(`scores-cont`);
+    fifthDiv.innerHTML = `<h3>${aveScoresOfStd}</h3>`;
+
+    let sixthDiv = document.createElement(`div`);
+    sixthDiv.classList.add(`performance-cat-cont`);
+    sixthDiv.innerHTML = `<h3>${perfOfStd}</h3>`;
+
+    let seventhDiv = document.createElement(`div`);
+    seventhDiv.classList.add(`delete-cont`);
+    seventhDiv.innerHTML = `<i class="fa-regular fa-trash-can" id="delete-student"></i>`;
+    seventhDiv.addEventListener(`click`, () => {
+      studentsDATA.splice(index, 1);
+      localStorage.setItem(`StudentDatabase`, JSON.stringify(studentsDATA));
+      renderOUTPUT();
+    });
+
+    rowDiv.append(
+      firstDiv,
+      secondDiv,
+      thirdDiv,
+      fourthDiv,
+      fifthDiv,
+      sixthDiv,
+      seventhDiv
+    );
+    mainTableDiv.append(rowDiv);
+  });
+});
+renderOUTPUT();
+
+searchIcon.addEventListener(`click`, () => {
+  searchBar.focus();
+});

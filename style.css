@@ -209,7 +209,7 @@
 }
 
 .left-side-container {
-  width: fit-content;
+  width: 100%;
   height: auto;
 }
 
@@ -250,7 +250,7 @@
 }
 
 .logout-btn {
-  background-color: hsl(244, 65%, 52%);
+  background-color: hsl(11, 65%, 52%);
   color: hsl(0, 0%, 96%);
   border: none;
   outline: none;
@@ -261,7 +261,11 @@
   font-weight: 500;
 }
 
-.logout-btn:hover,
+.logout-btn:hover {
+  background-color: hsl(11, 68%, 45%);
+  color: hsl(0, 0%, 100%);
+}
+
 .add-btn-container button:hover {
   background-color: hsl(244, 61%, 48%);
   color: hsl(0, 0%, 100%);
@@ -332,9 +336,8 @@
   display: flex;
   flex-direction: column;
   justify-content: start;
-  align-items: start;
+  align-items: center;
   row-gap: 0.3rem;
-  margin-top: 3rem;
 }
 
 .static-data-container,
@@ -348,13 +351,24 @@
   /* column-gap: 4rem; */
 }
 
+.render-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  row-gap: 0.1rem;
+  margin-top: 3rem;
+}
+
 .index-number {
-  width: fit-content;
+  width: 100%;
   height: auto;
   padding: 0.8rem 1rem;
   background-color: hsla(0, 0%, 65%, 0.29);
   border-right: 2px solid hsl(0, 1%, 22%);
-  flex: 1;
+  /* flex: 1; */
 }
 
 .index-number h3 {
@@ -367,11 +381,11 @@
 .students-names,
 .student-class,
 .scores {
-  width: fit-content;
+  width: 100%;
   height: auto;
   padding: 0.8rem 3rem;
   border-right: 2px solid hsl(0, 1%, 22%);
-  flex: 1;
+  /* flex: 1; */
   /* border-bottom: 2px solid hsl(0, 1%, 22%); */
 }
 
@@ -391,12 +405,22 @@
   background-color: hsla(0, 5%, 78%, 0.26);
 }
 
+.student-row {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid hsl(0, 1%, 22%);
+}
+
 .performance-cat {
-  width: fit-content;
+  width: 100%;
   height: auto;
   padding: 0.8rem 3rem;
   background-color: hsla(245, 95%, 84%, 0.224);
-  flex: 1;
+  /* flex: 1; */
 }
 
 .profile-pics h3,
@@ -410,12 +434,12 @@
 }
 
 .index-number-cont {
-  width: fit-content;
+  width: 100%;
   height: auto;
   background-color: hsl(0, 0%, 100%);
   padding: 0.8rem 1rem;
   border-right: 1px solid hsl(0, 1%, 22%);
-  flex: 1;
+  /* flex: 1; */
 }
 
 .index-number-cont h3,
@@ -443,24 +467,24 @@
 }
 
 .students-names-cont {
-  width: fit-content;
+  width: 100%;
   height: auto;
   background-color: hsl(0, 0%, 100%);
   padding: 0.8rem 3rem;
   border-right: 1px solid hsl(0, 1%, 22%);
   border-left: 1px solid hsl(0, 1%, 22%);
-  flex: 1;
+  /* flex: 1; */
 }
 
 .student-class-cont,
 .scores-cont,
 .performance-cat-cont {
-  width: fit-content;
+  width: 100%;
   height: auto;
   background-color: hsl(0, 0%, 100%);
   padding: 0.8rem 3rem;
   border-right: 1px solid hsl(0, 1%, 22%);
-  flex: 1;
+  /* flex: 1; */
 }
 
 .performance-cat-cont h3 {
