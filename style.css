@@ -313,6 +313,10 @@
   cursor: pointer;
 }
 
+.fa-magnifying-glass:hover {
+  color: hsl(262, 58%, 54%);
+}
+
 .add-btn-container {
   width: fit-content;
   height: auto;
@@ -348,7 +352,6 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* column-gap: 4rem; */
 }
 
 .render-container {
@@ -365,10 +368,9 @@
 .index-number {
   width: 100%;
   height: auto;
-  padding: 0.8rem 1rem;
+  padding: 0.8rem;
   background-color: hsla(0, 0%, 65%, 0.29);
   border-right: 2px solid hsl(0, 1%, 22%);
-  /* flex: 1; */
 }
 
 .index-number h3 {
@@ -377,27 +379,38 @@
   color: hsl(0, 0%, 28%);
 }
 
-.profile-pics,
-.students-names,
-.student-class,
-.scores {
+.students-names {
   width: 100%;
   height: auto;
-  padding: 0.8rem 3rem;
+  padding: 0.8rem 1.8rem 0.8rem 3.4rem;
   border-right: 2px solid hsl(0, 1%, 22%);
-  /* flex: 1; */
-  /* border-bottom: 2px solid hsl(0, 1%, 22%); */
-}
-
-.profile-pics {
-  background-color: hsla(263, 100%, 83%, 0.288);
-}
-
-.students-names {
+  border-left: 2px solid hsl(0, 1%, 22%);
   background-color: hsla(18, 88%, 81%, 0.251);
 }
 
+.scores {
+  width: 100%;
+  height: auto;
+  padding: 0.8rem 3rem 0.8rem 2.6rem;
+  border-right: 2px solid hsl(0, 1%, 22%);
+}
+
+.profile-pics {
+  width: 70%;
+  height: auto;
+  /* background-color: hsla(263, 100%, 83%, 0.288); */
+  margin: 0.8rem 0.9rem;
+  /* display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; */
+}
+
 .student-class {
+  width: 100%;
+  height: auto;
+  padding: 0.8rem 2.2rem 0.8rem 3rem;
+  border-right: 2px solid hsl(0, 1%, 22%);
   background-color: hsla(190, 100%, 86%, 0.292);
 }
 
@@ -418,9 +431,8 @@
 .performance-cat {
   width: 100%;
   height: auto;
-  padding: 0.8rem 3rem;
+  padding: 0.8rem 3rem 0.8rem 4rem;
   background-color: hsla(245, 95%, 84%, 0.224);
-  /* flex: 1; */
 }
 
 .profile-pics h3,
@@ -439,7 +451,6 @@
   background-color: hsl(0, 0%, 100%);
   padding: 0.8rem 1rem;
   border-right: 1px solid hsl(0, 1%, 22%);
-  /* flex: 1; */
 }
 
 .index-number-cont h3,
@@ -451,19 +462,29 @@
   color: hsl(0, 1%, 22%);
 }
 
+.students-names-cont h3:hover {
+  font-weight: 600;
+  color: hsl(244, 61%, 48%);
+}
+
 .profile-pics-cont {
-  width: 30px;
-  height: 30px;
-  background-color: hsl(115, 97%, 72%);
-  border-radius: 1000000000rem;
-  margin: 0.8rem 3rem;
-  /* flex: 1; */
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0.6rem 2.2rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(245, 100%, 90%); /* optional placeholder bg */
 }
 
 .profile-pics-cont img {
   width: 100%;
   height: 100%;
-  border-radius: 1000000000rem;
+  object-fit: cover;
+  display: block;
 }
 
 .students-names-cont {
@@ -473,7 +494,6 @@
   padding: 0.8rem 3rem;
   border-right: 1px solid hsl(0, 1%, 22%);
   border-left: 1px solid hsl(0, 1%, 22%);
-  /* flex: 1; */
 }
 
 .student-class-cont,
@@ -484,7 +504,6 @@
   background-color: hsl(0, 0%, 100%);
   padding: 0.8rem 3rem;
   border-right: 1px solid hsl(0, 1%, 22%);
-  /* flex: 1; */
 }
 
 .performance-cat-cont h3 {

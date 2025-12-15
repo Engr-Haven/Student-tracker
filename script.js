@@ -184,7 +184,7 @@ studentADDForm.addEventListener(`submit`, (e) => {
     stdMathsScore: mathematicsScore,
     stdEnglishScore: englishScorees,
     stdScienceScore: scienceScore,
-    stdAVESCORES: aveSCORES,
+    stdAVESCORES: Number(aveSCORES),
     stdPerfomance: function () {
       if (this.stdAVESCORES >= 80 && this.stdAVESCORES <= 100) {
         return `Excellent`;
@@ -199,8 +199,22 @@ studentADDForm.addEventListener(`submit`, (e) => {
   };
 
   // This line of code helps to get the performance of the student >>>
+  // Compute and store the performance string immediately so it's available
+  // whether we're creating a new entry or updating an existing one.
   stdDATA_OBJ.performanceStudent = stdDATA_OBJ.stdPerfomance();
-  // >>>>
+
+  // This block of code helps to EDIT the student data in the localStorage without creating a new entry >>>
+  if (dataEditedIndex !== null) {
+    studentsDATA[dataEditedIndex] = stdDATA_OBJ;
+    dataEditedIndex = null;
+    formModalDiv.classList.remove(`form-modal-container-visible`);
+    formModalDiv.classList.add(`form-modal-container`);
+    localStorage.setItem(`StudentDatabase`, JSON.stringify(studentsDATA));
+    renderOUTPUT();
+    studentADDForm.reset();
+    closedModalFunc();
+    return;
+  }
 
   studentsDATA.push(stdDATA_OBJ);
   localStorage.setItem(`StudentDatabase`, JSON.stringify(studentsDATA));
@@ -286,6 +300,9 @@ sciScore.addEventListener(`input`, () => {
   imgURLERR.textContent = ``;
 });
 
+// This variable will help me keep track of the index of the data being edited >>>
+let dataEditedIndex = null;
+
 // RENDER the output to the UI >>>
 
 function renderOUTPUT() {
@@ -302,6 +319,24 @@ function renderOUTPUT() {
     let aveScoresOfStd = std.stdAVESCORES;
     let perfOfStd = std.performanceStudent;
 
+    // Fallback: if performanceStudent is missing (older/localStorage entries),
+    // try to compute it from the stored function or the ave score number.
+    if (!perfOfStd) {
+      if (typeof std.stdPerfomance === "function") {
+        perfOfStd = std.stdPerfomance();
+      } else {
+        const ave = Number(std.stdAVESCORES);
+        if (!Number.isNaN(ave)) {
+          if (ave >= 80 && ave <= 100) perfOfStd = "Excellent";
+          else if (ave >= 60) perfOfStd = "Good";
+          else if (ave >= 40) perfOfStd = "Fair";
+          else perfOfStd = "Needs Help";
+        } else {
+          perfOfStd = "Needs Help";
+        }
+      }
+    }
+
     let rowDiv = document.createElement(`div`);
     rowDiv.classList.add(`student-row`);
 
@@ -317,6 +352,9 @@ function renderOUTPUT() {
     thirdDiv.classList.add(`students-names-cont`);
     thirdDiv.innerHTML = `<h3>${nameOfStd}</h3>`;
 
+    thirdDiv.style.cursor = `pointer`;
+    thirdDiv.title = `Click to Edit ${nameOfStd}'s Data`;
+
     let fourthDiv = document.createElement(`div`);
     fourthDiv.classList.add(`student-class-cont`);
     fourthDiv.innerHTML = `<h3>${classOfStd}</h3>`;
@@ -331,11 +369,28 @@ function renderOUTPUT() {
 
     let seventhDiv = document.createElement(`div`);
     seventhDiv.classList.add(`delete-cont`);
+    seventhDiv.title = `Delete ${nameOfStd}'s Data`;
     seventhDiv.innerHTML = `<i class="fa-regular fa-trash-can" id="delete-student"></i>`;
     seventhDiv.addEventListener(`click`, () => {
       studentsDATA.splice(index, 1);
       localStorage.setItem(`StudentDatabase`, JSON.stringify(studentsDATA));
       renderOUTPUT();
+    });
+
+    // The Edit Functionality DOM (using the name of the student as the trigger) >>>
+    thirdDiv.addEventListener(`click`, () => {
+      dataEditedIndex = index;
+
+      formModalDiv.classList.remove(`form-modal-container`);
+      formModalDiv.classList.add(`form-modal-container-visible`);
+
+      nameStudentInput.value = std.stdName;
+      ageStudentInput.value = std.stdAge;
+      classStudentInput.value = std.stdClass;
+      mathsScore.value = Number(std.stdMathsScore);
+      englishScore.value = Number(std.stdEnglishScore);
+      sciScore.value = Number(std.stdScienceScore);
+      imgURLInput.value = std.stdImageURL;
     });
 
     rowDiv.append(
@@ -366,18 +421,38 @@ searchBar.addEventListener(`input`, () => {
   mainTableDiv.innerHTML = ``;
 
   filteredData.forEach((student, index) => {
+    // Map the filtered item back to the original studentsDATA array so
+    // deletes/edits operate on the correct element.
+    const origIndex = studentsDATA.indexOf(student);
+
     let nameOfStd = student.stdName;
     let imgOfStd = student.stdImageURL;
     let classOfStd = student.stdClass;
     let aveScoresOfStd = student.stdAVESCORES;
     let perfOfStd = student.performanceStudent;
 
+    if (!perfOfStd) {
+      if (typeof student.stdPerfomance === "function") {
+        perfOfStd = student.stdPerfomance();
+      } else {
+        const ave = Number(student.stdAVESCORES);
+        if (!Number.isNaN(ave)) {
+          if (ave >= 80 && ave <= 100) perfOfStd = "Excellent";
+          else if (ave >= 60) perfOfStd = "Good";
+          else if (ave >= 40) perfOfStd = "Fair";
+          else perfOfStd = "Needs Help";
+        } else {
+          perfOfStd = "Needs Help";
+        }
+      }
+    }
+
     let rowDiv = document.createElement(`div`);
     rowDiv.classList.add(`student-row`);
 
     let firstDiv = document.createElement(`div`);
     firstDiv.classList.add(`index-number-cont`);
-    firstDiv.innerHTML = `<h3>${index + 1}</h3>`;
+    firstDiv.innerHTML = `<h3>${index + 1}</h3>`; // position in search results
 
     let secondDiv = document.createElement(`div`);
     secondDiv.classList.add(`profile-pics-cont`);
@@ -386,6 +461,9 @@ searchBar.addEventListener(`input`, () => {
     let thirdDiv = document.createElement(`div`);
     thirdDiv.classList.add(`students-names-cont`);
     thirdDiv.innerHTML = `<h3>${nameOfStd}</h3>`;
+
+    thirdDiv.style.cursor = `pointer`;
+    thirdDiv.title = `Click to Edit ${nameOfStd}'s Data`;
 
     let fourthDiv = document.createElement(`div`);
     fourthDiv.classList.add(`student-class-cont`);
@@ -401,11 +479,32 @@ searchBar.addEventListener(`input`, () => {
 
     let seventhDiv = document.createElement(`div`);
     seventhDiv.classList.add(`delete-cont`);
+    seventhDiv.title = `Delete ${nameOfStd}'s Data`;
     seventhDiv.innerHTML = `<i class="fa-regular fa-trash-can" id="delete-student"></i>`;
     seventhDiv.addEventListener(`click`, () => {
-      studentsDATA.splice(index, 1);
-      localStorage.setItem(`StudentDatabase`, JSON.stringify(studentsDATA));
-      renderOUTPUT();
+      if (origIndex > -1) {
+        studentsDATA.splice(origIndex, 1);
+        localStorage.setItem(`StudentDatabase`, JSON.stringify(studentsDATA));
+        renderOUTPUT();
+      }
+    });
+
+    // The Edit Functionality DOM for the search results (using the name of the student as the trigger) >>>
+    thirdDiv.addEventListener(`click`, () => {
+      if (origIndex > -1) dataEditedIndex = origIndex;
+
+      formModalDiv.classList.remove(`form-modal-container`);
+      formModalDiv.classList.add(`form-modal-container-visible`);
+
+      nameStudentInput.value = student.stdName;
+      ageStudentInput.value = student.stdAge;
+      classStudentInput.value = student.stdClass;
+      mathsScore.value = Number(student.stdMathsScore);
+      englishScore.value = Number(student.stdEnglishScore);
+      sciScore.value = Number(student.stdScienceScore);
+      imgURLInput.value = student.stdImageURL;
+
+      searchBar.value = ``;
     });
 
     rowDiv.append(
@@ -422,6 +521,7 @@ searchBar.addEventListener(`input`, () => {
 });
 renderOUTPUT();
 
+// Search Icon focused state >>>
 searchIcon.addEventListener(`click`, () => {
   searchBar.focus();
 });
