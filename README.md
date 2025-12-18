@@ -35,4 +35,4 @@
 ## PROJECT LINKS:
 
 - [GitHub Repo](https://github.com/Engr-Haven/Student-tracker)
-- [Live Demo](#)
+- [Live Demo](https://student-tracker-ruby-tau.vercel.app/)
